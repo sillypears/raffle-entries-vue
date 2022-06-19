@@ -6,6 +6,7 @@
     "dev": "webpack-dev-server --progress --config build/webpack.dev.conf.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "start": "node src/main.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
