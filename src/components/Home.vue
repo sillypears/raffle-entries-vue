@@ -21,38 +21,43 @@
 
       <b-container>
         <div>
-          You've entered {{ }}
+          Entered {{ userEntries.length }} {{ userEntries.length == 1 ? 'raffle' : 'raffles' }}
         </div>
         <b-row class="float-left">
-          <b-card-group deck class="col-md-2 col-sm-6" v-for="entry in userEntries" :key="entry.id">
+          <b-card-group deck class="col-lg-2 col-sm-6" v-for="entry in userEntries" :key="entry.id">
                 <b-card
                   style="max-width: 15rem;"
                   class="shadow-lg mb-2"
                 >
                 <b-card-title>
                   <b-row>
-                    <b-col class="">
-                      <a class="link-info" :href="`/maker/id/${entry.maker_id}`">
-                        {{ entry.maker_name}}
+                    <b-col class="col-md-9">
+                      <a class="" :href="`/maker/id/${entry.maker_id}`">
+                        <div class="text-truncate">{{ entry.maker_display }}</div>
                       </a>
                     </b-col>
-                    <b-col class="mx-auto text-center col-md-3 font-size-12">
-                      <div class="rounded result-green" v-if="entry.result === true">
+                    <b-col class="mx-auto text-center col-md-3 ">
+                      <span class="rounded result-green px-1" v-if="entry.result === true">
                         W
-                      </div>
-                      <div class="rounded result-red" v-else>
+                      </span>
+                      <span class="rounded result-red px-2" v-else>
                         L
-                      </div>
+                      </span>
                     </b-col>
                   </b-row>
                 </b-card-title>
                   <b-card-text>
                     <a :href="`/entry/id/${entry.id}`">
-                      {{ moment(entry.epoch).format('YYYY-MM-DD') }}
+                      {{ moment(entry.epoch*1000).format('YYYY-MM-DD') }},
+                      {{ moment(entry.epoch*1000).format('ddd') }}
                     </a>
                   </b-card-text>
                   <b-card-text>
-                    <a :href="entry.raffle_link" target="_blank">{{ entry.notes }}</a>
+                    <a :href="entry.raffle_link" target="_blank">
+                      <div class="text-truncate">
+                        {{ entry.notes }}
+                      </div>
+                    </a>
                   </b-card-text>
                   <b-card-footer>
                     <b-row>
