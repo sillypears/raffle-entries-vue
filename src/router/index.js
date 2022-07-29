@@ -30,6 +30,21 @@ export default new VueRouter({
       component: LoginView,
     },
     {
+      path: '/logout',
+      name: 'Logout',
+      component: {
+        beforeRouteEnter(_, from, next) {
+          const dest = {
+            path: from.path || '/login',
+            query: from.query || '',
+            params: from.params || '',
+          };
+          store.dispatch('logout');
+          next(dest);
+        },
+      },
+    },
+    {
       path: '/register',
       name: 'RegisterView',
       component: RegisterView,

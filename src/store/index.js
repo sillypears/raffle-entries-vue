@@ -29,6 +29,9 @@ const actions = {
   getUserEntries(context) {
     return getEntries(context.state.jwt.token);
   },
+  logout(context) {
+    context.commit('logoutUser', { context });
+  },
 };
 
 const mutations = {
@@ -41,6 +44,12 @@ const mutations = {
   },
   setUserData(state, payload) {
     state.userid = payload.data.userid;
+  },
+  logoutUser(state) {
+    state.userid = '';
+    state.user = '';
+    state.jwt = '';
+    state.entries = 0;
   },
 };
 
